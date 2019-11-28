@@ -256,3 +256,9 @@ ifndef PLATFORM_MIN_SUPPORTED_TARGET_SDK_VERSION
   PLATFORM_MIN_SUPPORTED_TARGET_SDK_VERSION := 23
 endif
 .KATI_READONLY := PLATFORM_MIN_SUPPORTED_TARGET_SDK_VERSION
+
+# Include ShiftOS versioning, which needs to be set at the very beginning already
+INTERNAL_SHIFT_VERSIONING_MAKEFILE := $(wildcard vendor/shiftos/config/version.mk)
+ifneq "" "$(INTERNAL_SHIFT_VERSIONING_MAKEFILE)"
+  include $(INTERNAL_SHIFT_VERSIONING_MAKEFILE)
+endif
