@@ -112,4 +112,9 @@ message OtaMetadata {
 
   // True iff security patch level downgrade is permitted on this OTA.
   bool spl_downgrade = 9;
+
+  // ShiftOS specific properties, used by OTA server.
+  string shift_device_codename = 10;
+  string shift_pre_build_type = 11;
+  string shift_post_build_version = 12;
 }
