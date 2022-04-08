@@ -278,6 +278,14 @@ def GetPackageMetadata(target_info, source_info=None):
   if is_incremental:
     HandleDowngradeMetadata(metadata_proto, target_info, source_info)
 
+  # SHIFT additions
+  metadata_proto.shift_device_codename = target_info.GetPartitionBuildProp(
+    'ro.product.name', 'vendor')
+  metadata_proto.shift_pre_build_type = target_info.GetBuildProp('ro.shift.release.type')
+  metadata_proto.shift_post_build_version = "%s.%s" % (
+    target_info.GetBuildProp('ro.shift.sos.version.number'),
+    target_info.GetBuildProp('ro.shift.sos.version.extra'))
+
   return metadata_proto
 
 
@@ -323,6 +331,11 @@ def BuildLegacyOtaMetadata(metadata_proto):
   if metadata_proto.spl_downgrade:
     metadata_dict['spl-downgrade'] = 'yes'
   metadata_dict.update(metadata_proto.property_files)
+
+  # SHIFT additions
+  metadata_dict['shift-device-codename'] = metadata_proto.shift_device_codename
+  metadata_dict['shift-pre-build-type'] = metadata_proto.shift_pre_build_type
+  metadata_dict['shift-post-build-version'] = metadata_proto.shift_post_build_version
 
   return metadata_dict
 
