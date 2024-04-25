@@ -39,7 +39,10 @@
 # the build.prop target also wants INTERNAL_BUILD_ID_MAKEFILE to be set
 # if the file exists.
 #
-INTERNAL_BUILD_ID_MAKEFILE := $(wildcard $(BUILD_SYSTEM)/build_id.mk)
+INTERNAL_BUILD_ID_MAKEFILE := $(wildcard vendor/shiftos/build/build_id.mk)
+ifndef INTERNAL_BUILD_ID_MAKEFILE
+  INTERNAL_BUILD_ID_MAKEFILE := $(wildcard $(BUILD_SYSTEM)/build_id.mk)
+endif
 ifdef INTERNAL_BUILD_ID_MAKEFILE
   include $(INTERNAL_BUILD_ID_MAKEFILE)
 endif
