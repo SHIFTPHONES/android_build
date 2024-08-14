@@ -1140,7 +1140,7 @@ def RewriteProps(data):
         pieces = value.split("/")
         pieces[-1] = EditTags(pieces[-1])
         value = "/".join(pieces)
-      elif key == "ro.build.description":
+      elif key == "ro.build.description" or key == "ro.build.keys":
         pieces = value.split()
         assert pieces[-1].endswith("-keys")
         pieces[-1] = EditTags(pieces[-1])
