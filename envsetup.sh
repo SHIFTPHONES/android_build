@@ -495,6 +495,9 @@ function lunch()
         return 1
     fi
 
+    # Populate LINEAGE_BUILD
+    check_product $product $release
+
     _lunch_meat $product $release $variant
 }
 
