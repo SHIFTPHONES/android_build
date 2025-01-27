@@ -26,3 +26,8 @@ PRODUCT_PACKAGES += \
     product_manifest.xml \
     selinux_policy_product \
     product-build.prop \
+
+# Packages included only for eng or userdebug builds, previously debug tagged
+PRODUCT_PACKAGES_DEBUG += \
+    adb_keys \
+    adb_keys.recovery
