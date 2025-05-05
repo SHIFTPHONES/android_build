@@ -1203,7 +1203,7 @@ def GenerateAbOtaPackage(target_file, output_file, source_file=None):
   partition_timestamps_flags = []
   # Enforce a max timestamp this payload can be applied on top of.
   if OPTIONS.downgrade:
-    max_timestamp = source_info.GetBuildProp("ro.build.date.utc")
+    #max_timestamp = source_info.GetBuildProp("ro.build.date.utc")
     partition_timestamps_flags = GeneratePartitionTimestampFlagsDowngrade(
         metadata.precondition.partition_state,
         metadata.postcondition.partition_state
@@ -1247,7 +1247,7 @@ def GenerateAbOtaPackage(target_file, output_file, source_file=None):
     additional_args += ["--force_minor_version", OPTIONS.force_minor_version]
   if OPTIONS.compressor_types:
     additional_args += ["--compressor_types", OPTIONS.compressor_types]
-  additional_args += ["--max_timestamp", max_timestamp]
+  #additional_args += ["--max_timestamp", max_timestamp]
 
   if SupportsMainlineGkiUpdates(source_file):
     logger.warning(
@@ -1517,8 +1517,8 @@ def main(argv):
     # We should only allow downgrading incrementals (as opposed to full).
     # Otherwise the device may go back from arbitrary build with this full
     # OTA package.
-  if OPTIONS.incremental_source is None and OPTIONS.downgrade:
-    raise ValueError("Cannot generate downgradable full OTAs")
+  #if OPTIONS.incremental_source is None and OPTIONS.downgrade:
+    #raise ValueError("Cannot generate downgradable full OTAs")
 
   # TODO(xunchang) for retrofit and partial updates, maybe we should rebuild the
   # target-file and reload the info_dict. So the info will be consistent with
